@@ -2,12 +2,13 @@
        :doc "WebDriver support for Clojure" }
   webdriver
   (:refer-clojure :exclude [get name])
-  (:import [org.openqa.selenium By WebDriver WebElement Speed Cookie]
+  (:import [org.openqa.selenium By WebDriver WebElement Speed Cookie NoSuchElementException]
            [org.openqa.selenium.firefox FirefoxDriver]
            [org.openqa.selenium.ie InternetExplorerDriver]
            [org.openqa.selenium.chrome ChromeDriver]
            [org.openqa.selenium.htmlunit HtmlUnitDriver]
-           [java.util Date]))
+           [java.util Date]
+           [java.io File]))
 
 (def *drivers* {
       :firefox FirefoxDriver
@@ -32,16 +33,6 @@
   [driver]
   (.getTitle driver))
 
-; FIXME
-(defn find-elements
-  [driver]
-  [])
-
-; FIXME
-(defn find-element
-  [driver]
-  [])
-
 (defn page-source
   [driver]
   (.getPageSource driver))
@@ -62,6 +53,11 @@
 (defn window-handle
   [driver]
   (.getWindowHandle driver))
+
+; FIXME: This is FirefoxDriver only and deprecated
+(defn save-screenshot
+  [driver filename]
+  (.saveScreenshot driver (new File filename)))
 
 ; Navigation interface
 (defn back
@@ -181,16 +177,65 @@
 
 (defn find-element
   [obj by]
-  (.findElement obj by))
+  (try (.findElement obj by)
+  (catch NoSuchElementException e nil)))
 
 (defn find-elements
   [obj by]
-  (into [] (.findElements obj by)))
+  (try (into [] (.findElements obj by))
+  (catch NoSuchElementException e [])))
 
+; WebElement
+(defn click
+  [element]
+  (.click element))
+
+(defn submit
+  [element]
+  (.submit element))
+
+(defn value
+  [element]
+  (.getValue element))
+
+(defn clear
+  [element]
+  (.clear element))
+
+(defn tag-name
+  [element]
+  (.getTagName element))
+
+(defn attribute
+  [element name]
+  (.getAttribute element name))
+
+(defn toggle
+  [element]
+  (.toggle element))
+
+(defn selected?
+  [element]
+  (.isSelected element))
+
+(defn select
+  [element]
+  (.setSelected element))
+
+(defn enabled?
+  [element]
+  (.isEnabled element))
+
+(defn text
+  [element]
+  (.getText element))
+
+(defn send-keys
+  [element keys]
+  (.sendKeys element (into-array CharSequence (list keys))))
 
 ; MAIN
-(def driver (new-driver :firefox))
-(get driver "http://google.com")
+;(def driver (new-driver :firefox))
+;(get driver "http://google.com")
 ;(quit driver)
-
 ;(System/exit 0)
