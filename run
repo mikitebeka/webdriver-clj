@@ -1,0 +1,4 @@
+#!/bin/bash
+
+java -cp webdriver-all.jar:json-20080701.jar:clojure-1.0.0.jar \
+    clojure.lang.Repl webdriver.clj
