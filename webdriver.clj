@@ -4,7 +4,9 @@
 ;                  "file://" 
 ;                  (.getCanonicalPath (new File ".")) 
 ;                  "webdriver-all.jar"))
-(ns com.mikitebeka.webdriver
+(ns #^{:author "Miki Tebeka"
+       :doc "WebDriver support for Clojure" }
+  com.mikitebeka.webdriver
   (:refer-clojure :exclude [get])
   (:import [org.openqa.selenium By WebDriver WebElement]
            [org.openqa.selenium.firefox FirefoxDriver]
