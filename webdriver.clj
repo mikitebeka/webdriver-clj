@@ -19,10 +19,7 @@
 (defn new-driver
   "create new driver"
   [browser]
-  (let [create
-        ({ :firefox (fn [] (new FirefoxDriver))
-          :ie (fn [] (new InternetExplorerDriver))} browser)]
-    (create)))
+  (.newInstance (*drivers* browser)))
 
 (defn get
   [driver url]
