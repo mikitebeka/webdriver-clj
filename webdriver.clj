@@ -46,7 +46,6 @@
   [driver]
   (.quit driver))
 
-; FIXME
 (defn window-handles
   [driver]
   (into #{} (.getWindowHandles driver)))
@@ -113,7 +112,7 @@
   [driver cookie]
   (.addCookie (.manage driver) cookie))
 
-; FIXME: Multi method
+; FIXME: Multi method for delete-cookie-named and delete-cookie
 (defn delete-cookie-named
   [driver name]
   (.deleteCookieNamed (.manage driver) name))
@@ -235,8 +234,11 @@
   [element keys]
   (.sendKeys element (into-array CharSequence (list keys))))
 
-; MAIN
-;(def driver (new-driver :firefox))
-;(get driver "http://google.com")
-;(quit driver)
-;(System/exit 0)
+(defn- smoke-test
+  []
+  (let [driver (new-driver :firefox)]
+    (get driver "http://google.com")
+    (let [elem (find-element driver (by-name "q"))]
+      (send-keys elem "Sauce Labs\n"))))
+
+;(smoke-test)
