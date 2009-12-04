@@ -2,7 +2,8 @@
        :doc "WebDriver support for Clojure" }
   webdriver
   (:refer-clojure :exclude [get name])
-  (:import [org.openqa.selenium By WebDriver WebElement Speed Cookie NoSuchElementException]
+  (:import [org.openqa.selenium By WebDriver WebElement Speed Cookie
+                                NoSuchElementException]
            [org.openqa.selenium.firefox FirefoxDriver]
            [org.openqa.selenium.ie InternetExplorerDriver]
            [org.openqa.selenium.chrome ChromeDriver]
