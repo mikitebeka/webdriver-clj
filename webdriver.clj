@@ -1,4 +1,4 @@
-(ns #^{:author "Miki Tebeka <miki@mikitebeka.com>"
+(ns #^{:author "Miki Tebeka <miki@saucelabs.com>"
        :doc "WebDriver support for Clojure" }
   webdriver
   (:refer-clojure :exclude [get name])
