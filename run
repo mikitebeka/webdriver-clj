@@ -1,4 +1,11 @@
 #!/bin/bash
 
+script=${1-webdriver.clj}
+
+if [ ! -f $script ]; then
+    echo "error: can't find $script"
+    exit 1
+fi
+
 java -Djava.ext.dirs=jars -cp clojure-1.0.0.jar \
-    clojure.lang.Repl webdriver.clj
+    clojure.lang.Repl $script
