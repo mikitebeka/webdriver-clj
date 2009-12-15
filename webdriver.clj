@@ -1,7 +1,7 @@
 (ns #^{:author "Miki Tebeka <miki@saucelabs.com>"
        :doc "WebDriver support for Clojure" }
   webdriver
-  (:refer-clojure :exclude [get name])
+  (:refer-clojure :exclude [get])
   (:import [org.openqa.selenium By WebDriver WebElement Speed Cookie
                                 NoSuchElementException]
            [org.openqa.selenium.firefox FirefoxDriver]
@@ -99,11 +99,11 @@
   ([name value path] (new-cookie name value path nil))
   ([name value path date] (new Cookie name value path date)))
 
-(defn name
+(defn cookie-name
   [cookie]
   (.getName cookie))
 
-(defn value
+(defn cookie-value
   [cookie]
   (.getValue cookie))
 
