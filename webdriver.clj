@@ -233,13 +233,3 @@
 (defn send-keys
   [element keys]
   (.sendKeys element (into-array CharSequence (list keys))))
-
-(defn- smoke-test
-  []
-  (let [driver (new-driver :firefox)]
-    (get driver "http://google.com")
-    (let [elem (find-element driver (by-name "q"))]
-      (send-keys elem "Sauce Labs\n"))))
-
-(if *command-line-args* 
-  (smoke-test))
