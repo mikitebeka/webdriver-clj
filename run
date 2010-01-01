@@ -7,5 +7,5 @@ if [ ! -f $script ]; then
     exit 1
 fi
 
-java -Djava.ext.dirs=jars -cp clojure-1.0.0.jar \
-    clojure.lang.Repl $script
+java -Djava.ext.dirs=jars -cp clojure.jar \
+    clojure.main $script --

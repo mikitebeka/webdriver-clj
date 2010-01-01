@@ -241,4 +241,5 @@
     (let [elem (find-element driver (by-name "q"))]
       (send-keys elem "Sauce Labs\n"))))
 
-;(smoke-test)
+(if *command-line-args* 
+  (smoke-test))
