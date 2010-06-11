@@ -10,7 +10,7 @@ See test/webdriver_test.clj for minimal example.
 
 ## Installation
 
-lein deps
+> lein deps
 
 ## License
 
